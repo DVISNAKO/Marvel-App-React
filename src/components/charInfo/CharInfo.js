@@ -25,6 +25,7 @@ class CharInfo extends Component {
         }
     }
 
+
     updateChar = () => {
         const { charId } = this.props;
         if (!charId) {
@@ -82,7 +83,7 @@ const View = ({ char }) => {
     return (
         <>
             <div className="char__basics">
-                <img src={thumbnail} alt={name} />
+                <img style={{objectFit: 'contain'}} src={thumbnail} alt={name} />
                 <div>
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
@@ -100,8 +101,10 @@ const View = ({ char }) => {
             </div>
             <div className="char__comics">Comics:</div>
             <ul className="char__comics-list">
+                {comics.length > 0 ? null : 'There is no comics wtih this character'}
                 {
                     comics.map((item, i) => {
+                        if (i> 9) return;
                         return (
                             <li key={i} className="char__comics-item">
                                {item.name}
